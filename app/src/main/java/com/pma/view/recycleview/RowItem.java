@@ -1,4 +1,4 @@
-package com.pma.com.pma.view.recyclerview;
+package com.pma.view.recycleview;
 
 /**
  * Created by xworks.admin on 1/25/2018.

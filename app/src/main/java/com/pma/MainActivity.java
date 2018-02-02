@@ -1,24 +1,17 @@
 package com.pma;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.view.View;
 
-import com.pma.com.pma.view.recyclerview.RemindersViewAdapter;
-import com.pma.com.pma.view.recyclerview.RowItem;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Arrays.asList;
+import com.pma.databinding.ContentMainBinding;
+import com.pma.viewmodel.ContentViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,21 +31,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        createRemindersList();
+        ContentMainBinding binding = DataBindingUtil.setContentView(this, R.layout.content_main);
+        binding.setData(new ContentViewModel());
+        
+//        createRemindersList();
     }
 
-    private void createRemindersList() {
-        RecyclerView remindersView = findViewById(R.id.reminders_list_view);
-        remindersView.setLayoutManager(new LinearLayoutManager(this));
-
-        List<RowItem> data = new ArrayList<>();
-
-        for (int i = 0; i < 100; i++) {
-            data.add(new RowItem(R.drawable.ic_launcher, "item " + i, "description " + i));
-        }
-
-        remindersView.setAdapter(new RemindersViewAdapter(this, data));
-    }
+//    private void createRemindersList() {
+//        RecyclerView remindersView = findViewById(R.id.reminders_list_view);
+//        remindersView.setLayoutManager(new LinearLayoutManager(this));
+//
+//        List<RowItem> data = new ArrayList<>();
+//
+//        for (int i = 0; i < 100; i++) {
+//            data.add(new RowItem(R.drawable.ic_launcher, "item " + i, "description " + i));
+//        }
+//
+//        remindersView.setAdapter(new RemindersViewAdapter(this, data));
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

@@ -1,4 +1,4 @@
-package com.pma.com.pma.view.recyclerview;
+package com.pma.view.recycleview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
