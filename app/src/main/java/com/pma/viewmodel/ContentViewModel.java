@@ -22,30 +22,30 @@ import java.util.List;
  */
 
 public class ContentViewModel implements Observable {
-    private ObservableArrayList<Reminder> items;
+    private ObservableArrayList<ReminderViewModel> items;
 
     public ContentViewModel() {
         items = new ObservableArrayList<>();
         items.addAll(getReminders());
     }
 
-    private Collection<Reminder> getReminders() {
-        List<Reminder> data = new ArrayList<>();
+    private Collection<ReminderViewModel> getReminders() {
+        List<ReminderViewModel> data = new ArrayList<>();
 
         for (int i = 0; i < 100; i++) {
-            data.add(new Reminder(R.drawable.ic_launcher, "item " + i, "description " + i));
+            data.add(new ReminderViewModel(new Reminder(R.drawable.ic_launcher, "item " + i, "description " + i)));
         }
 
         return data;
     }
 
-    public ObservableArrayList<Reminder> getItems() {
+    public ObservableArrayList<ReminderViewModel> getItems() {
         return items;
     }
 
     @BindingAdapter("items")
-    public static void bindList(ListView view, ObservableArrayList<Reminder> list) {
-        view.setAdapter(new ListViewAdapter<Reminder>(list) {
+    public static void bindList(ListView view, ObservableArrayList<ReminderViewModel> list) {
+        view.setAdapter(new ListViewAdapter<ReminderViewModel>(list) {
             @Override
             protected ViewDataBinding bind(int position, ViewGroup parent) {
                 ReminderBinding binding = DataBindingUtil.inflate(inflater, R.layout.reminder, parent, false);

@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.pma.model.Reminder" />
+            type="com.pma.viewmodel.ReminderViewModel" />
     </data>
 
     <LinearLayout

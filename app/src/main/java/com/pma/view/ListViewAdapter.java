@@ -47,6 +47,7 @@ public abstract class ListViewAdapter<T> extends BaseAdapter {
         }
 
         ViewDataBinding binding = bind(position, parent);
+        binding.executePendingBindings();
         return binding.getRoot();
     }
 }
