@@ -6,6 +6,7 @@ import android.databinding.Observable;
 import android.databinding.ObservableArrayList;
 import android.databinding.ViewDataBinding;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.pma.R;
@@ -22,30 +23,30 @@ import java.util.List;
  */
 
 public class ContentViewModel implements Observable {
-    private ObservableArrayList<ReminderViewModel> items;
+    private ObservableArrayList<Reminder> items;
 
     public ContentViewModel() {
         items = new ObservableArrayList<>();
         items.addAll(getReminders());
     }
 
-    private Collection<ReminderViewModel> getReminders() {
-        List<ReminderViewModel> data = new ArrayList<>();
+    private Collection<Reminder> getReminders() {
+        List<Reminder> data = new ArrayList<>();
 
         for (int i = 0; i < 100; i++) {
-            data.add(new ReminderViewModel(new Reminder(R.drawable.ic_launcher, "item " + i, "description " + i)));
+            data.add(new Reminder(R.drawable.ic_launcher, "item " + i, "description " + i));
         }
 
         return data;
     }
 
-    public ObservableArrayList<ReminderViewModel> getItems() {
+    public ObservableArrayList<Reminder> getItems() {
         return items;
     }
 
     @BindingAdapter("items")
-    public static void bindList(ListView view, ObservableArrayList<ReminderViewModel> list) {
-        view.setAdapter(new ListViewAdapter<ReminderViewModel>(list) {
+    public static void bindList(ListView view, ObservableArrayList<Reminder> list) {
+        view.setAdapter(new ListViewAdapter<Reminder>(list) {
             @Override
             protected ViewDataBinding bind(int position, ViewGroup parent) {
                 ReminderBinding binding = DataBindingUtil.inflate(inflater, R.layout.reminder, parent, false);
@@ -53,6 +54,11 @@ public class ContentViewModel implements Observable {
                 return binding;
             }
         });
+    }
+
+    @BindingAdapter("android:src")
+    public static void setImageResource(ImageView imageView, int resource) {
+        imageView.setImageResource(resource);
     }
 
     @Override
