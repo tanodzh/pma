@@ -22,7 +22,7 @@
             android:layout_margin="@dimen/fab_margin"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:onClick="@{data::addNew}"
+            android:onClick="@{data::startReminderActivity}"
             app:srcCompat="@android:drawable/ic_dialog_email" />
 
         <ListView

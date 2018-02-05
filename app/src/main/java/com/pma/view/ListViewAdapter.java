@@ -18,8 +18,8 @@ public abstract class ListViewAdapter<T> extends BaseAdapter {
     protected List<T> list;
     protected LayoutInflater inflater;
 
-    public ListViewAdapter(List<T> data) {
-        list = data;
+    public ListViewAdapter(List<T> list) {
+        this.list = list;
     }
 
     protected abstract ViewDataBinding bind(int position, ViewGroup parent);
@@ -45,7 +45,6 @@ public abstract class ListViewAdapter<T> extends BaseAdapter {
             inflater = (LayoutInflater) parent.getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
-
         ViewDataBinding binding = bind(position, parent);
         binding.executePendingBindings();
         return binding.getRoot();
