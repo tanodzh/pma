@@ -5,6 +5,8 @@ import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ObservableArrayList;
 import android.databinding.ViewDataBinding;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,10 +24,10 @@ import java.util.List;
  * Created by tano on 2.2.2018 г..
  */
 
-public class ContentViewModel implements Observable {
+public class MainViewModel implements Observable {
     private ObservableArrayList<Reminder> items;
 
-    public ContentViewModel() {
+    public MainViewModel() {
         items = new ObservableArrayList<>();
         items.addAll(getReminders());
     }
@@ -59,6 +61,11 @@ public class ContentViewModel implements Observable {
     @BindingAdapter("android:src")
     public static void setImageResource(ImageView imageView, int resource) {
         imageView.setImageResource(resource);
+    }
+
+    public void addNew(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
     @Override
