@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ObservableArrayList;
 import android.databinding.ViewDataBinding;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -35,6 +34,8 @@ public class MainViewModel implements Observable {
     private Collection<Reminder> getReminders() {
         List<Reminder> data = new ArrayList<>();
 
+        Reminder r = new Reminder(0, "", "");
+
         for (int i = 0; i < 100; i++) {
             data.add(new Reminder(R.drawable.ic_launcher, "item " + i, "description " + i));
         }
@@ -47,7 +48,7 @@ public class MainViewModel implements Observable {
     }
 
     @BindingAdapter("items")
-    public static void bindList(ListView view, ObservableArrayList<Reminder> list) {
+    public static void bindList(ListView view, final ObservableArrayList<Reminder> list) {
         view.setAdapter(new ListViewAdapter<Reminder>(list) {
             @Override
             protected ViewDataBinding bind(int position, ViewGroup parent) {
@@ -64,8 +65,6 @@ public class MainViewModel implements Observable {
     }
 
     public void addNew(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
 
     @Override
